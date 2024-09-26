@@ -62,6 +62,26 @@ namespace _9_25_hw3_decks_and_cards {
                 Console.WriteLine($"{cards[i].Rank} of {cards[i].Suit}");
             }
         }
+        public void shuffle() {
+
+            if (cards.Count == 0) {
+                Console.WriteLine("Deck is empty!");
+            }
+            else {
+                Random rand = new Random();
+                int i = 0, j = 0;
+                Card temp;
+
+                while (i < cards.Count - 1) {
+                    j = rand.Next(i, cards.Count);
+                    temp = cards[i];
+                    cards[i] = cards[j];
+                    cards[j] = temp;
+
+                    i++;
+                }
+            }
+        }
 
         // Constructor
         public Deck() {
@@ -92,7 +112,11 @@ namespace _9_25_hw3_decks_and_cards {
             Console.WriteLine("\nAfter take from top deck:\n");
             deck.printDeck();
             
-            //Console.WriteLine(card);
+            deck.shuffle();
+
+            Console.WriteLine("\nAfter shuffle:\n");
+
+            deck.printDeck();
         }
     }
 }
