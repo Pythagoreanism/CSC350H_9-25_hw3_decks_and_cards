@@ -82,6 +82,23 @@ namespace _9_25_hw3_decks_and_cards {
                 }
             }
         }
+        public void cut(int cutFrom) {
+            if (cutFrom > cards.Count || cutFrom < 1) {
+                Console.WriteLine("Error: Invalid index! " + 
+                                  $"Try between 1 - {cards.Count - 1}");
+            }
+            else {
+                List<Card> miniDeck = new List<Card>();
+
+                for (int i = cards.Count - cutFrom; i < cards.Count; i++) {
+                    miniDeck.Add(cards[i]);
+                }
+
+                cards.RemoveRange(cards.Count - cutFrom, cutFrom);
+                miniDeck.AddRange(cards);
+                cards = miniDeck; // Assign new values to original member
+            }
+        }
 
         // Constructor
         public Deck() {
@@ -115,6 +132,12 @@ namespace _9_25_hw3_decks_and_cards {
             deck.shuffle();
 
             Console.WriteLine("\nAfter shuffle:\n");
+
+            deck.printDeck();
+
+            deck.cut(2);
+
+            Console.WriteLine("\nAfter cut 2 cards from top\n");
 
             deck.printDeck();
         }
